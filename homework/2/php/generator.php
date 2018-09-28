@@ -39,7 +39,6 @@
                 $firstName[$i][0] = ucfirst($firstName[$i][0]);
                 $firstName[$i][1] = array_shift($firstNameParts);
                 $firstName[$i][2] = array_shift($firstNameParts);
-                $firstName[$i][3] = array_shift($firstNameParts);
 
                 array_push($firstName, array());                
             }
@@ -78,7 +77,6 @@
                 $lastName[$i][0] = ucfirst($lastName[$i][0]);
                 $lastName[$i][1] = array_shift($lastNameParts);
                 $lastName[$i][2] = array_shift($lastNameParts);
-                $lastName[$i][3] = array_shift($firstNameParts);
 
                 array_push($lastName, array());                
             }
