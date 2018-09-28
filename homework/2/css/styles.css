@@ -1,5 +1,5 @@
 body {
-    background-image:url("/repo/homework/2/img/lettersBackground.jpg");
+    background-image:url("repo/homework/2/img/lettersBackground.png");
 }
 
 header, footer, #form, #wrapper {
