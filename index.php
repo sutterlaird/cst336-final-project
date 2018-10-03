@@ -11,6 +11,9 @@
             <a href="labs/2/index.php">Lab 2</a>
             <br />
             <a href="homework/2/index.php">Homework 2</a>
+            <br />
+            <a href="labs/4/index.php">Lab 4</a>
+
 
     </body>
 </html>
