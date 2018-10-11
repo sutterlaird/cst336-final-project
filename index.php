@@ -13,6 +13,8 @@
             <a href="homework/2/index.php">Homework 2</a>
             <br />
             <a href="labs/4/index.php">Lab 4</a>
+            <br />
+            <a href="labs/5/index.php">Lab 5</a>
 
 
     </body>

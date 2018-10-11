@@ -1,0 +1,4 @@
+[2018-09-28 18:04:46] TestLogging.WARNING: Foo [] []
+[2018-09-28 18:04:46] TestLogging.ERROR: Bar [] []
+[2018-09-28 18:05:32] TestLogging.WARNING: Foo [] []
+[2018-09-28 18:05:32] TestLogging.ERROR: Bar [] []
