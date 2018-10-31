@@ -7,7 +7,13 @@
   </head>
   <body>
     <h1>Meme Generator</h1>
-    <img height="100px" width="150px" src="https://www.publicdomainpictures.net/pictures/90000/velka/alpaca-chewing.jpg" alt="a-chewing-alpaca">
+    <?php  
+    $meme_array = ['https://www.publicdomainpictures.net/pictures/90000/velka/alpaca-chewing.jpg', 'https://upload.wikimedia.org/wikipedia/commons/c/ca/LinusPaulingGraduation1922.jpg', 
+    'https://upload.wikimedia.org/wikipedia/commons/f/ff/Deep_in_thought.jpg', 'https://upload.wikimedia.org/wikipedia/commons/b/b9/Typing_computer_screen_reflection.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/4/47/StateLibQld_1_100348.jpg'];
+      
+    echo "<img height='100px' width='150px' src= " . $meme_array[array_rand($meme_array)] . " >";
+    ?>
     <h2>Welcome to my Meme Generator!</h2>
     
     <form action="meme.php" method="post">
