@@ -1,0 +1,66 @@
+.meme-div{
+    width: 450px;
+    height: 450px;
+    background-size: cover;
+    text-align: center;
+    position: relative;
+    font-size: 18px;
+}
+      
+.memes-container .meme-div{
+    width: 150px;
+    height:150px;
+    float: left;
+    margin: 10px 20px;
+}
+
+.memes-container .meme-div h2 {
+    font-size: 18px;
+}
+
+
+.meme-div h2 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 15px 0;
+    padding: 0 5px;
+    font-family: impact;
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
+.line1 {
+ top: 0;
+}
+.line2 {
+ bottom: 0;
+}
+
+nav ul {
+    float: right;
+    text-decoration: none;
+}
+
+.clear {
+    clear: both;
+}
+
+
+.error {
+    color: red; 
+    padding: 10px 10px 10px 0px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 0 0 20px;
+}
+
+nav a {
+    text-decoration: none; 
+}
