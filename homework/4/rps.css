@@ -1,0 +1,86 @@
+#gameWindow{
+	position: relative;
+	margin: 0 auto;
+	width: 600px;
+	border: 2px solid black;
+	height: 400px;
+	background-color: #DDDDDD;
+}
+
+#playerPanel{
+	position: absolute;
+	left: 40px;
+	top: 20px;
+}
+
+#computerPanel{
+	position: absolute;
+	left: 360px;
+	top: 20px;
+}
+
+#imgComputer, #imgPlayer{
+	width: 200px;
+}
+
+h2{
+	text-align: center;
+	color: maroon;
+}
+
+.iconButton{
+	display: inline-block;
+	margin: 3px;
+	padding: 4px;
+	border-radius: 5px;
+	width: 48px;
+	text-align: center;
+	cursor: hand;
+	cursor: pointer;
+	font-size: 10pt;
+}
+
+.iconButton img{
+	width: 22px;
+}
+
+.iconButton:hover{
+	color: white;
+}
+
+.iconLabel{
+	display: inline-block;
+	margin: 3px;
+	padding: 4px;
+	border-radius: 5px;
+	width: 48px;
+	text-align: center;
+	font-size: 10pt;
+	border: 1px solid black;
+	background-color: #EEEEEE;
+}
+
+.iconLabel img{
+	width: 22px;
+}
+
+#btnGo{
+	position: absolute;
+	left: 260px;
+	top: 270px;
+	padding: 10px;
+	border-radius: 20px;
+	width: 50px;
+	text-align: center;
+	cursor: hand;
+	cursor: pointer;
+	font-size: 14pt;
+	background-color: #0CA619;
+	color: white;
+	
+	display: none;
+}
+
+#btnGo:hover{
+	background-color: #0CC819;
+}
