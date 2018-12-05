@@ -31,3 +31,11 @@ body {
 #contentArea {
     padding: 25px;
 }
+
+#kitTitle {
+    text-align: center;
+    color: navy;
+}
+
+#items {
+}
