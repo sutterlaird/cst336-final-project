@@ -8,6 +8,7 @@ switch($httpMethod) {
     header("Access-Control-Allow-Methods: POST, GET");
     header("Access-Control-Max-Age: 3600");
     exit();
+    
   case "GET":
     // Allow any client to access
     header("Access-Control-Allow-Origin: *");
@@ -18,7 +19,6 @@ switch($httpMethod) {
     break;
     
   case 'POST':
-    
     $servername = 'sutterlaird.com';
     $username = 'sutterla_final';
     $password = 'cst336final';
@@ -28,36 +28,40 @@ switch($httpMethod) {
     $dbConn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
     $dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
     
-    ////////////////////////////////////////////////////////////////////////////////
-    // This is an example of a "select where" 
-    ////////////////////////////////////////////////////////////////////////////////
+    $rawJsonString = file_get_contents("php://input");
+    // Make it a associative array (true, second param)
+    $postedJsonData = json_decode($rawJsonString, true);
     
-    // if ($_GET['id'] != 0) {
-    
-    //   $whereSql = "SELECT * FROM pets WHERE id = :id";
+    if ($postedJsonData['requestType'] == "login")
+    {
+      $whereSql = "SELECT * FROM `users` WHERE username=:username AND password=SHA(:password)";
       
-    //   // The prepare caches the SQL statement for N number of parameters imploded above
-    //   $whereStmt = $dbConn->prepare($whereSql);
+      // The prepare caches the SQL statement for N number of parameters imploded above
+      $whereStmt = $dbConn->prepare($whereSql);
+      $whereStmt->bindParam(":username", $postedJsonData['username']);
+      $whereStmt->bindParam(":password", $postedJsonData['password']);
+      $whereStmt->execute(); 
+      $records = $whereStmt->fetchAll(PDO::FETCH_ASSOC);
       
-    //   $whereStmt->bindParam(":id", $_GET['id']);
-    // }
+      if (count($records) == 1) {
+        // login successful
+        $results = ["statusCode" => "0",
+                "message" => "Login successful!"];
+      }
+      else {
+        $results = ["statusCode" => "1",
+                "message" => "Login failed!"];
+      }
+    }
     
-    // else {
-      $allSql = "SELECT * FROM users";
-      $whereStmt = $dbConn->prepare($allSql);
-    // }
     
-    $whereStmt->execute(); 
-    $userJsonData = $whereStmt->fetchAll(PDO::FETCH_ASSOC);
-
-
     // Allow any client to access
     header("Access-Control-Allow-Origin: *");
     // Let the client know the format of the data being returned
     header("Content-Type: application/json");
-
+    echo $_POST['username'];
     // Sending back down as JSON
-    echo json_encode($userJsonData);
+    echo json_encode($results);
     
     break;
     
