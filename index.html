@@ -28,14 +28,14 @@
                 
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                      <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="buildHomepage()">Home</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#">Local Resources</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">My Kit</a>
+                        <a class="nav-link" href="#" onclick="buildKitPage()">My Kit</a>
                       </li>
                     </ul>
                   </div>
@@ -48,7 +48,31 @@
           
         </div>
         
+        <div id="home" class="d-none">
+          Yo put some content up in here yo
+        </div>
         
+        <div id="myKit" class="d-none">
+          <form id="items">
+            <input type="checkbox" name="items" value="water"> Water<br>
+            <input type="checkbox" name="items" value="food"> Food<br>
+            <input type="checkbox" name="items" value="radio"> Portable Radio<br>
+            <input type="checkbox" name="items" value="flashlight"> Flashlight<br>
+            <input type="checkbox" name="items" value="firstAid"> First Aid Kit<br>
+            <input type="checkbox" name="items" value="batteries"> Extra Batteries<br>
+            <input type="checkbox" name="items" value="whistle"> Whistle<br>
+            <input type="checkbox" name="items" value="mask"> Dust Mask<br>
+            <input type="checkbox" name="items" value="towel"> Moist Towelettes<br>
+            <input type="checkbox" name="items" value="bags"> Garbage Bags and Plastic Ties<br>
+            <input type="checkbox" name="items" value="tools"> Wrench or Pliers <br>
+            <input type="checkbox" name="items" value="maps"> Local Maps<br>  
+            <input type="checkbox" name="items" value="charger"> Cell Phone Charger<br>  
+            <input type="checkbox" name="items" value="phoneBattery"> Backup Phone Battery<br>  
+            
+            <br><br>
+            <input id = "submit" class="btn" type="button" value="Update">
+        </form>
+        </div>
 
     </body>
 </html>

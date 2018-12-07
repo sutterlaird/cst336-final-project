@@ -1,11 +1,22 @@
-function buildHomepage() {
-    clearPage();
-    
-    $("#contentArea").html("yo put some content in me");
-    alert("it happened");
+function clearPage() {
+    $("#contentArea").html("");
 }
 
 
-function clearPage() {
-    $("#contentArea").html("");
+
+
+
+
+function buildHomepage() {
+    clearPage();
+    $("#contentArea").append($("#home").html())
+}
+
+
+
+
+
+function buildKitPage() {
+    clearPage();
+    $("#contentArea").append($("#myKit").html())
 }
