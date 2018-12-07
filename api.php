@@ -55,11 +55,41 @@ switch($httpMethod) {
     }
     
     
+    if ($postedJsonData['requestType'] == "signup")
+    {
+      $whereSql = "INSERT INTO `users` (`username`, `password`) values(:username,SHA(:password))";
+      
+      // The prepare caches the SQL statement for N number of parameters imploded above
+      $whereStmt = $dbConn->prepare($whereSql);
+      $whereStmt->bindParam(":username", $postedJsonData['username']);
+      $whereStmt->bindParam(":password", $postedJsonData['password']);
+      $whereStmt->execute();
+      
+      
+      $whereSql = "SELECT * FROM `users` WHERE username=:username AND password=SHA(:password)";
+      // The prepare caches the SQL statement for N number of parameters imploded above
+      $whereStmt = $dbConn->prepare($whereSql);
+      $whereStmt->bindParam(":username", $postedJsonData['username']);
+      $whereStmt->bindParam(":password", $postedJsonData['password']);
+      $whereStmt->execute(); 
+      $records = $whereStmt->fetchAll(PDO::FETCH_ASSOC);
+      
+      if (count($records) == 1) {
+        // login successful
+        $results = ["statusCode" => "0",
+                "message" => "Account creation successful!"];
+      }
+      else {
+        $results = ["statusCode" => "1",
+                "message" => "Account creation failed!"];
+      }
+    }
+    
+    
     // Allow any client to access
     header("Access-Control-Allow-Origin: *");
     // Let the client know the format of the data being returned
     header("Content-Type: application/json");
-    echo $_POST['username'];
     // Sending back down as JSON
     echo json_encode($results);
     
