@@ -21,15 +21,21 @@ function buildHomepage() {
 
 function buildKitPage() {
     clearPage();
-    $("#contentArea").append($("#myKit").html())
+    if (!loggedIn) {
+        showLoginModal(function() {
+            $("#contentArea").append($("#myKit").html());
+        });
+    }
 }
 
 
 
-function showLoginModal() {
+function showLoginModal(callback) {
     $("#loginModal").modal("show");
     
+    
     $("#loginButton").click(function() {
+        
         
         var userData = {
             requestType: "login",
@@ -51,10 +57,19 @@ function showLoginModal() {
                 $("#loginModal").modal("hide");
                 $("#loginBarButton").hide();
                 $("#loginBar").html("Logged in as " + userData.username + "  ");
+                if (callback) {
+                    callback();
+                }
             }
             else {
+                $("#loginFailureMsg").removeClass("d-none");
                 console.log("Login failed");
-                
+                $("#logInUsername").change(function() {
+                    $("#loginFailureMsg").addClass("d-none");
+                });
+                $("#logInPassword").click(function() {
+                    $("#loginFailureMsg").addClass("d-none");
+                });
             }
         })
         .fail(function(xhr, status, errorThrown) {

@@ -46,7 +46,7 @@
         </div>
         
         <div id="home" class="d-none">
-            <div class="title"><h1>Do You Have Your Go Bag?</h1></div>
+            <div class="title text-center"><h1>Do You Have Your Go Bag?</h1></div>
             <img src="img/gobag.jpg" alt="Picture of go bag">
             <div id="content1">A go bag, otherwise referred to as a bug-out bag or a 72-hour bag, is important when disaster strikes. When something bad happens, 
             time is essential and can be the difference between life and death. For example, take the recent wildfires, having a go bag already pre-packed with everything, 
@@ -104,6 +104,10 @@
                   Username: <input type="text" id="logInUsername"><br/><br/>
                   Password: <input type="password" id="logInPassword">
                 </form>
+                <br />
+                <div id="loginFailureMsg" class="alert alert-danger d-none">
+                  <strong>Error:</strong> Username or password was incorrect
+                </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
