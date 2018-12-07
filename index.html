@@ -3,15 +3,17 @@
     <head>
         <title>CSUMB Emergency Preparedness</title>
         <link href="css/style.css" rel="stylesheet" type="text/css" />
+		    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl" crossorigin="anonymous"></script>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		    <script src="scripts/engine.js"></script>
     </head>
     <body onload="buildHomepage()">
+      
+      
         <header>
             <div id="loginBar">
-                <span class="loginLink">Sign Up</span>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signupModal">Sign up</button>
                 <span class="loginLink">Log In</span>
                 <span id="stupidSpaceNextToLogInLink">no</span>
             </div>
@@ -73,6 +75,31 @@
             <input id = "submit" class="btn" type="button" value="Update">
         </form>
         </div>
-
+                
+        <!-- Modal -->
+        <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create an Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form method="POST">
+                  Username: <input type="text" id="username" name="username"></input></span><br /><br />
+                  Password: <input type="password" name="password"></input> <br/ ><br />
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+    
     </body>
 </html>
