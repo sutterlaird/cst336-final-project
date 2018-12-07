@@ -28,6 +28,11 @@ function buildKitPage() {
     }
 }
 
+function buildMapPage() {
+    clearPage();
+    $("#contentArea").append($("#disasterMap").html())
+}
+
 
 
 function showLoginModal(callback) {
