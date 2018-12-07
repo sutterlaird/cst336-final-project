@@ -24,6 +24,11 @@ function buildKitPage() {
     $("#contentArea").append($("#myKit").html())
 }
 
+function buildMapPage() {
+    clearPage();
+    $("#contentArea").append($("#disasterMap").html())
+}
+
 
 
 function showLoginModal() {
