@@ -33,8 +33,8 @@ function showLoginModal() {
         
         var userData = {
             requestType: "login",
-            username: $("#username").val(),
-            password: $("#password").val()
+            username: $("#logInUsername").val(),
+            password: $("#logInPassword").val()
         };
         $.ajax({
             url: "api.php",
