@@ -5,19 +5,10 @@ function clearPage() {
     $("#contentArea").html("");
 }
 
-
-
-
-
-
 function buildHomepage() {
     clearPage();
     $("#contentArea").append($("#home").html())
 }
-
-
-
-
 
 function buildKitPage() {
     clearPage();
@@ -28,8 +19,6 @@ function buildMapPage() {
     clearPage();
     $("#contentArea").append($("#disasterMap").html())
 }
-
-
 
 function showLoginModal() {
     $("#loginModal").modal("show");
