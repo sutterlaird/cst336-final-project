@@ -9,6 +9,16 @@ switch($httpMethod) {
     header("Access-Control-Max-Age: 3600");
     exit();
   case "GET":
+    // Allow any client to access
+    header("Access-Control-Allow-Origin: *");
+    
+    http_response_code(401);
+    echo "Not Supported";
+    
+    break;
+    
+  case 'POST':
+    
     $servername = 'sutterlaird.com';
     $username = 'sutterla_final';
     $password = 'cst336final';
@@ -48,14 +58,6 @@ switch($httpMethod) {
 
     // Sending back down as JSON
     echo json_encode($userJsonData);
-    
-    break;
-  case 'POST':
-    // Allow any client to access
-    header("Access-Control-Allow-Origin: *");
-    
-    http_response_code(401);
-    echo "Not Supported";
     
     break;
     
