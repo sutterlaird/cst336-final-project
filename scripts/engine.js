@@ -23,7 +23,28 @@ function buildKitPage() {
 }
 
 function kitPageWork() {
-    $("#contentArea").append($("#myKit").html());
+    var userData = {
+        requestType: "getKit",
+        userId: userId
+    }
+    
+    $.ajax({
+            url: "api.php",
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(userData)
+    })
+    .done(function(data) {
+        $("#contentArea").append($("#myKit").html());
+        console.log(data);
+        for (var key in data) {
+            $("#" + data[key].shortname + "Check").prop("checked", "true");
+        }
+    })
+    .fail(function(xhr, status, errorThrown) {
+        console.log("error", xhr.responseText);
+    });
 }
 
 

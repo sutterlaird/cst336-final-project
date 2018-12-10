@@ -89,7 +89,7 @@ switch($httpMethod) {
     
     else if ($postedJsonData['requestType'] == "getKit")
     {
-      $whereSql = "SELECT * from `user_has` NATURAL JOIN `items` WHERE user_id=:user_id";
+      $whereSql = "SELECT shortname from `user_has` NATURAL JOIN `items` WHERE user_id=:user_id";
       
       // The prepare caches the SQL statement for N number of parameters imploded above
       $whereStmt = $dbConn->prepare($whereSql);
@@ -97,16 +97,6 @@ switch($httpMethod) {
       $whereStmt->execute();
       
       $results = $whereStmt->fetchAll(PDO::FETCH_ASSOC);
-      
-      // if (count($records) == 1) {
-      //   // login successful
-      //   $results = ["statusCode" => "0",
-      //           "message" => "Account creation successful!"];
-      // }
-      // else {
-      //   $results = ["statusCode" => "1",
-      //           "message" => "Account creation failed!"];
-      // }
     }
     
     
