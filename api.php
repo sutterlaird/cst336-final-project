@@ -19,6 +19,7 @@ switch($httpMethod) {
     break;
     
   case 'POST':
+    // Server settings for Sutter's MySQL server
     $servername = 'sutterlaird.com';
     $username = 'sutterla_final';
     $password = 'cst336final';
@@ -28,10 +29,22 @@ switch($httpMethod) {
     $dbConn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
     $dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
     
+    // Get transmitted data
     $rawJsonString = file_get_contents("php://input");
     // Make it a associative array (true, second param)
     $postedJsonData = json_decode($rawJsonString, true);
     
+    // Allow any client to access
+    header("Access-Control-Allow-Origin: *");
+    // Let the client know the format of the data being returned
+    header("Content-Type: application/json");
+    
+    
+    
+    
+    
+    
+    // Check if request is for login, then execute login procedure
     if ($postedJsonData['requestType'] == "login")
     {
       $whereSql = "SELECT * FROM `users` WHERE username=:username AND password=SHA(:password)";
@@ -56,6 +69,13 @@ switch($httpMethod) {
     }
     
     
+    
+    
+    
+    
+    
+    
+    // Check if request is for signup, then execute signup procedure
     else if ($postedJsonData['requestType'] == "signup")
     {
       $whereSql = "INSERT INTO `users` (`username`, `password`) values(:username,SHA(:password))";
@@ -87,6 +107,13 @@ switch($httpMethod) {
     }
     
     
+    
+    
+    
+    
+    
+    
+    // Check if request is to get the saved kit contents, then execute procedure
     else if ($postedJsonData['requestType'] == "getKit")
     {
       $whereSql = "SELECT shortname from `user_has` NATURAL JOIN `items` WHERE user_id=:user_id";
@@ -100,6 +127,13 @@ switch($httpMethod) {
     }
     
     
+    
+    
+    
+    
+    
+    
+    // Check if request is to update the saved kit contents
     else if ($postedJsonData['requestType'] == "setKit")
     {
       $userId = $postedJsonData['userId'];
@@ -140,14 +174,20 @@ switch($httpMethod) {
     }
     
     
-    // Allow any client to access
-    header("Access-Control-Allow-Origin: *");
-    // Let the client know the format of the data being returned
-    header("Content-Type: application/json");
+    
+    
+    
+    
+    
+    
+    
     // Sending back down as JSON
     echo json_encode($results);
     
     break;
+    
+    
+    
     
   case 'PUT':
     // Allow any client to access

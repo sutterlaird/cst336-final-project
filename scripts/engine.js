@@ -1,15 +1,40 @@
+// Global variables to handle login functions
 var loggedIn = false;
 var userId;
 
+
+
+
+
+
+
+
+// clearPage clears the content area of the page
 function clearPage() {
     $("#contentArea").html("");
 }
 
+
+
+
+
+
+
+
+// buildHomepage adds the homepage code to the content area
 function buildHomepage() {
     clearPage();
     $("#contentArea").append($("#home").html())
 }
 
+
+
+
+
+
+
+
+// buildKitPage checks if logged in before either opening the login modal or loading the kit page
 function buildKitPage() {
     clearPage();
     if (!loggedIn) {
@@ -22,6 +47,14 @@ function buildKitPage() {
     }
 }
 
+
+
+
+
+
+
+
+// kitPageWork handles loading the kit page code into the content area and checking the appropriate checkboxes
 function kitPageWork() {
     var userData = {
         requestType: "getKit",
@@ -51,6 +84,9 @@ function kitPageWork() {
 
 
 
+
+
+// setKit updates the DB when the update button is pressed on the kit page
 function setKit() {
     var checkedItems = new Array();
     $("input:checkbox[name=items]:checked").each(function(){
@@ -63,7 +99,6 @@ function setKit() {
         items: checkedItems
     }
     
-    
     $.ajax({
             url: "api.php",
             type: "POST",
@@ -74,6 +109,7 @@ function setKit() {
     .done(function(data) {
         if (data['statusCode'] == 0) {
             console.log("Kit Updated Successfully");
+            $("#kitUpdateMsg").removeClass("d-none");
         }
         else {
             console.log("YOU FAILED");
@@ -91,18 +127,24 @@ function setKit() {
 
 
 
+// buildMapPage adds the map page's code to the content area
 function buildMapPage() {
     clearPage();
     $("#contentArea").append($("#disasterMap").html())
 }
 
+
+
+
+
+
+
+
+// showLoginModal opens the login modal and verifies the account, with an optional callback argument to execute a function after login is finished
 function showLoginModal(callback) {
     $("#loginModal").modal("show");
     
-    
     $("#loginButton").click(function() {
-        
-        
         var userData = {
             requestType: "login",
             username: $("#logInUsername").val(),
@@ -149,11 +191,15 @@ function showLoginModal(callback) {
 
 
 
+
+
+
+
+// showSignupModal opens the signup modal and creates the account
 function showSignupModal() {
     $("#signupModal").modal("show");
     
     $("#signupButton").click(function() {
-        
         var userData = {
             requestType: "signup",
             username: $("#signUpUsername").val(),
