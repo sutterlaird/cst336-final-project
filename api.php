@@ -166,6 +166,49 @@ switch($httpMethod) {
     
     
     
+    // Check if request is to get the profile, then execute procedure
+    else if ($postedJsonData['requestType'] == "getProfile")
+    {
+      $whereSql = "SELECT * from `users` WHERE user_id=:user_id";
+      
+      // The prepare caches the SQL statement for N number of parameters imploded above
+      $whereStmt = $dbConn->prepare($whereSql);
+      $whereStmt->bindParam(":user_id", $_SESSION['user_id']);
+      $whereStmt->execute();
+      
+      $records = $whereStmt->fetchAll(PDO::FETCH_ASSOC);
+      $results = $records[0];
+    }
+    
+    
+    
+    
+    
+    
+    // Check if request is to update the profile, then execute procedure
+    else if ($postedJsonData['requestType'] == "updateProfile")
+    {
+      $updateSQL = "UPDATE `users` SET `firstname` = :firstname, `lastname` = :lastname, `phone` = :phone, `email` = :email, `address` = :address WHERE `user_id` = :user_id";
+      
+      // The prepare caches the SQL statement for N number of parameters imploded above
+      $whereStmt = $dbConn->prepare($updateSQL);
+      $whereStmt->bindParam(":user_id", $_SESSION['user_id']);
+      $whereStmt->bindParam(":firstname", $postedJsonData['firstname']);
+      $whereStmt->bindParam(":lastname", $postedJsonData['lastname']);
+      $whereStmt->bindParam(":phone", $postedJsonData['phone']);
+      $whereStmt->bindParam(":email", $postedJsonData['email']);
+      $whereStmt->bindParam(":address", $postedJsonData['address']);
+      $whereStmt->execute();
+      
+      $results = ["statusCode" => "0",
+                "message" => "Account creation successful!"];
+    }
+    
+    
+    
+    
+    
+    
     
     
     // Check if request is to update the saved kit contents

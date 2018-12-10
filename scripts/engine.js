@@ -26,8 +26,8 @@ function checkLogin() {
                 console.log("login was successful");
                 loggedIn = true;
                 userId = data['user_id'];
-                // $("#loginBarButton").hide();
                 $("#loginBar").html("Logged in as " + data['username'] + "  " + $("#logoutButtonDiv").html());
+                $("#profileLink").removeClass("d-none");
             }
             else {
                 $("#loginBar").html($("#loginBarButtons").html());
@@ -64,6 +64,65 @@ function buildHomepage() {
 
 
 
+
+
+// buildProfilePage adds the homepage code to the content area
+function buildProfilePage() {
+    clearPage();
+    $("#contentArea").append($("#profile").html())
+    
+     var userData = {
+        requestType: "getProfile",
+    };
+    $.ajax({
+            url: "api.php",
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(userData)
+        })
+        .done(function(data) {
+            $("#profileUsername").val(data['username']);
+            $("#profileFirstName").val(data['firstname']);
+            $("#profileLastname").val(data['lastname']);
+            $("#profileEmail").val(data['email']);
+            $("#profilePhone").val(data['phone']);
+            $("#profileAddress").val(data['address']);
+        })
+        .fail(function(xhr, status, errorThrown) {
+            console.log("error", xhr.responseText);
+        });
+}
+
+
+
+
+
+
+function updateProfile() {
+    var userData = {
+        requestType: "updateProfile",
+        firstname: $("#profileFirstName").val(),
+        lastname: $("#profileLastname").val(),
+        phone: $("#profilePhone").val(),
+        email: $("#profileEmail").val(),
+        address: $("#profileAddress").val()
+    };
+    $.ajax({
+            url: "api.php",
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(userData)
+        })
+        .done(function(data) {
+            alert("SHIT IS DONE DUDE");
+        })
+        .fail(function(xhr, status, errorThrown) {
+            console.log("error", xhr.responseText);
+        });
+    
+}
 
 
 
@@ -199,9 +258,8 @@ function showLoginModal(callback) {
                 userId = data['user_id'];
                 
                 $("#loginModal").modal("hide");
-                // $("#loginBarButton").hide();
                 $("#loginBar").html("Logged in as " + userData.username + "  " + $("#logoutButtonDiv").html());
-                // $("#loginBar").append($("#logoutButtonDiv").html());
+                $("#profileLink").removeClass("d-none");
                 if (callback) {
                     callback();
                 }
@@ -257,6 +315,7 @@ function showSignupModal() {
                 $("#signupModal").modal("hide");
                 $("#signupBarButton").hide();
                 $("#loginBar").html("Logged in as " + userData.username + "  ");
+                $("#profileLink").removeClass("d-none");
             }
             else {
                 alert("Account creation failed!");
@@ -295,6 +354,7 @@ function logOut() {
             userId = "";
             $("#loginBar").html($("#loginBarButtons").html());
             buildHomepage();
+            $("#profileLink").addClass("d-none");
         }
     })
     .fail(function(xhr, status, errorThrown) {

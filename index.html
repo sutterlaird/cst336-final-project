@@ -32,6 +32,9 @@
                       <li class="nav-item">
                         <a class="nav-link" href="#" onclick="buildMapPage()">Disaster Map</a>
                       </li>
+                      <li class="nav-item d-none" id="profileLink">
+                        <a class="nav-link" href="#" onclick="buildProfilePage()">My Profile</a>
+                      </li>
                     </ul>
                   </div>
                 </nav>
@@ -55,7 +58,7 @@
                 time is essential and can be the difference between life and death. For example, take the recent wildfires, having a go bag already pre-packed with everything, 
                 all you would need to do is grab your bag and go. This would significantly reduce the amount of time you would need to spend in harms way, since instead of needing
                 to gather up all of your items it would all be ready. Another advantage would be that since the bag is already packed with all of the essentials, it becomes easier
-                to make sure you have everything you may need. This is the best option for emergency preperation since it allows you to always be ready to go whenever you may need too.</p>
+                to make sure you have everything you may need. This is the best option for emergency preperation since it allows you to always be ready to go whenever you may need to.</p>
                 </div>
             </div>
             
@@ -68,12 +71,12 @@
                     <p>It is good to keep non-perishable food such as high calorie energy or protein bars. These are good choice since they are lightweight, 
             easy to pack, and easy to eat while moving. Size and weight are important since there will be many items in the bag, so it is best to use limited space, 
             while keeping weight to a minimum. It may also be good to keep gum in your bag since it can not only keep your breath fresh, but it can also help with 
-            aliviating hunger.</p>
+            aleviating hunger.</p>
                 </div>
             </div><br>
             
             <div class="title text-center"><h1>Tips For Maintaining Your Bag</h1></div>
-            <div id="content3">It is best to have your go bag ready 24/7, since disaster can strike at any time. This means checking your bag evert six months 
+            <div id="content3">It is best to have your go bag ready 24/7, since disaster can strike at any time. This means checking your bag every six months 
             to at least change out food and water items. If needed, it is also good to check any medication, and also to make sure that children's clothing in 
             the bag still fits them.</div><br>
         </div>
@@ -180,6 +183,21 @@
           <button type="button" id="loginBarButton" class="btn btn-primary" onclick="showLoginModal()">Log In</button>
         </div>
         <!--End login/signup buttons-->
+        
+        
+        
+        
+        <div id="profile" class="d-none">
+          <form>
+            Username: <input type="text" id="profileUsername" readonly><br/>
+            First Name: <input type="text" id="profileFirstName"><br/>
+            Last Name: <input type="text" id="profileLastname"><br/>
+            Email Address: <input type="text" id="profileEmail"><br/>
+            Phone Number: <input type="text" id="profilePhone"><br/>
+            Address: <input type="text" id="profileAddress"><br/>
+            <button type="button" id="updateProfileButton" class="btn btn-primary" onclick="updateProfile()">Update Profile</button>
+          </form>
+        </div>
         
     </body>
 </html>
