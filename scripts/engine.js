@@ -14,10 +14,62 @@ function buildKitPage() {
     clearPage();
     if (!loggedIn) {
         showLoginModal(function() {
-            $("#contentArea").append($("#myKit").html());
+            kitPageWork();
         });
     }
+    else {
+        kitPageWork();
+    }
 }
+
+function kitPageWork() {
+    $("#contentArea").append($("#myKit").html());
+}
+
+
+
+
+
+
+function setKit() {
+    var checkedItems = new Array();
+    $("input:checkbox[name=items]:checked").each(function(){
+        checkedItems.push($(this).val());
+    });
+    
+    var userData = {
+        requestType: "setKit",
+        userId: userId,
+        items: checkedItems
+    }
+    
+    
+    $.ajax({
+            url: "api.php",
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(userData)
+    })
+    .done(function(data) {
+        if (data['statusCode'] == 0) {
+            console.log("Kit Updated Successfully");
+        }
+        else {
+            console.log("YOU FAILED");
+        }
+    })
+    .fail(function(xhr, status, errorThrown) {
+        console.log("error", xhr.responseText);
+    });
+}
+
+
+
+
+
+
+
 
 function buildMapPage() {
     clearPage();
@@ -47,6 +99,7 @@ function showLoginModal(callback) {
             if (data['statusCode'] == 0) {
                 console.log("login was successful");
                 loggedIn = true;
+                userId = data['user_id'];
                 
                 $("#loginModal").modal("hide");
                 $("#loginBarButton").hide();
