@@ -1,4 +1,5 @@
 <?php
+session_start();
 $httpMethod = strtoupper($_SERVER['REQUEST_METHOD']);
 
 switch($httpMethod) {
@@ -40,12 +41,41 @@ switch($httpMethod) {
     header("Content-Type: application/json");
     
     
+    if ($postedJsonData['requestType'] == "checkLogin") {
+      if ($_SESSION['loggedIn']) {
+        $results = ["statusCode" => "0",
+                "message" => "Already logged in",
+                "user_id" => $_SESSION['user_id'],
+                "username" => $_SESSION['username']
+                ];
+      }
+      else {
+        $results = ["statusCode" => "1",
+                "message" => "Not logged in"];
+      }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    else if ($postedJsonData['requestType'] == "logOut") {
+      $_SESSION['loggedIn'] = false;
+      $_SESSION['user_id'] = "";
+      $_SESSION['username'] = "";
+      $results = ["statusCode" => "0",
+                "message" => "Logged out"];
+    }
     
     
     
     
     // Check if request is for login, then execute login procedure
-    if ($postedJsonData['requestType'] == "login")
+    else if ($postedJsonData['requestType'] == "login")
     {
       $whereSql = "SELECT * FROM `users` WHERE username=:username AND password=SHA(:password)";
       
@@ -61,6 +91,9 @@ switch($httpMethod) {
         $results = ["statusCode" => "0",
                 "message" => "Login successful!",
                 "user_id" => $records[0]["user_id"]];
+        $_SESSION['loggedIn'] = true;
+        $_SESSION['user_id'] = $records[0]["user_id"];
+        $_SESSION['username'] = $records[0]["username"];
       }
       else {
         $results = ["statusCode" => "1",
@@ -99,6 +132,8 @@ switch($httpMethod) {
         // login successful
         $results = ["statusCode" => "0",
                 "message" => "Account creation successful!"];
+        $_SESSION['loggedIn'] = true;
+        $_SESSION['user_id'] = $records[0]["user_id"];
       }
       else {
         $results = ["statusCode" => "1",

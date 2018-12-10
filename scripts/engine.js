@@ -9,6 +9,40 @@ var userId;
 
 
 
+// Runs at load and checks if already logged in
+function checkLogin() {
+    var userData = {
+        requestType: "checkLogin",
+    };
+    $.ajax({
+            url: "api.php",
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(userData)
+        })
+        .done(function(data) {
+            if (data['statusCode'] == 0) {
+                console.log("login was successful");
+                loggedIn = true;
+                userId = data['user_id'];
+                // $("#loginBarButton").hide();
+                $("#loginBar").html("Logged in as " + data['username'] + "  " + $("#logoutButtonDiv").html());
+            }
+            else {
+                $("#loginBar").html($("#loginBarButtons").html());
+            }
+        })
+        .fail(function(xhr, status, errorThrown) {
+            console.log("error", xhr.responseText);
+        });
+}
+
+
+
+
+
+
 // clearPage clears the content area of the page
 function clearPage() {
     $("#contentArea").html("");
@@ -24,6 +58,7 @@ function clearPage() {
 // buildHomepage adds the homepage code to the content area
 function buildHomepage() {
     clearPage();
+    checkLogin();
     $("#contentArea").append($("#home").html())
 }
 
@@ -164,8 +199,9 @@ function showLoginModal(callback) {
                 userId = data['user_id'];
                 
                 $("#loginModal").modal("hide");
-                $("#loginBarButton").hide();
-                $("#loginBar").html("Logged in as " + userData.username + "  ");
+                // $("#loginBarButton").hide();
+                $("#loginBar").html("Logged in as " + userData.username + "  " + $("#logoutButtonDiv").html());
+                // $("#loginBar").append($("#logoutButtonDiv").html());
                 if (callback) {
                     callback();
                 }
@@ -231,5 +267,37 @@ function showSignupModal() {
             console.log("error", xhr.responseText);
         });
                 
+    });
+}
+
+
+
+
+
+
+
+
+// Log Out
+function logOut() {
+    var userData = {
+        requestType: "logOut"
+    };
+    $.ajax({
+        url: "api.php",
+        type: "POST",
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify(userData)
+    })
+    .done(function(data) {
+        if (data['statusCode'] == 0) {
+            loggedIn = false;
+            userId = "";
+            $("#loginBar").html($("#loginBarButtons").html());
+            buildHomepage();
+        }
+    })
+    .fail(function(xhr, status, errorThrown) {
+        console.log("error", xhr.responseText);
     });
 }
