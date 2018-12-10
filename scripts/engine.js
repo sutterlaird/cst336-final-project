@@ -37,7 +37,6 @@ function kitPageWork() {
     })
     .done(function(data) {
         $("#contentArea").append($("#myKit").html());
-        console.log(data);
         for (var key in data) {
             $("#" + data[key].shortname + "Check").prop("checked", "true");
         }
