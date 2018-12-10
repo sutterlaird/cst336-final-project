@@ -10,12 +10,10 @@
         <script src="scripts/engine.js"></script>
     </head>
     <body onload="buildHomepage()">
-      
-      
         <header>
             <div id="loginBar">
-                <button type="button" id="signupBarButton" class="btn btn-primary" onclick="showSignupModal()">Sign up</button>
-                <button type="button" id="loginBarButton" class="btn btn-primary" onclick="showLoginModal()">Log In</button>
+                <!--<button type="button" id="signupBarButton" class="btn btn-primary" onclick="showSignupModal()">Sign up</button>-->
+                <!--<button type="button" id="loginBarButton" class="btn btn-primary" onclick="showLoginModal()">Log In</button>-->
             </div>
             <div id="headerBar">
                 <h1>CSUMB Emergency Preparedness</h1>
@@ -167,6 +165,21 @@
           </div>
         </div>
         <!--End Signup Modal-->
+        
+        
+        <!--Logout button-->
+        <div id="logoutButtonDiv" class="d-none">
+          <button type="button" id="logOutButton" class="btn btn-primary" onclick="logOut()">Log Out</button>
+        </div>
+        <!--End logout button-->
+        
+        
+        <!--Login/signup buttons-->
+        <div id="loginBarButtons" class="d-none">
+          <button type="button" id="signupBarButton" class="btn btn-primary" onclick="showSignupModal()">Sign up</button>
+          <button type="button" id="loginBarButton" class="btn btn-primary" onclick="showLoginModal()">Log In</button>
+        </div>
+        <!--End login/signup buttons-->
         
     </body>
 </html>
