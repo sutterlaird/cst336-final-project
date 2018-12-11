@@ -23,14 +23,14 @@
     //If you load this page it will print "Can't use db" because $db_selected is coming up false
 
     // Set the active MySQL database
-    $db_selected = mysqli_select_db($database, $connection);
+    $db_selected = mysqli_select_db($connection, $database);
     if (!$db_selected) {
       die ('Can\'t use db : ' . mysqli_error($connection));
     }
     
     // Select all the rows in the markers table
     $query = "SELECT * FROM map WHERE 1";
-    $result = mysqli_query($query);
+    $result = mysqli_query($connection, $query);
     if (!$result) {
       die('Invalid query: ' . mysqli_error());
     }
@@ -42,7 +42,7 @@
     echo '<markers>';
     $ind=0;
     // Iterate through the rows, printing XML nodes for each
-    while ($row = @mysqli_fetch_assoc($result)){
+    while ($row = @mysqli_fetch_assoc($result)) {
       // Add to XML document node
       echo '<marker ';
       echo 'id="' . $row['id'] . '" ';
