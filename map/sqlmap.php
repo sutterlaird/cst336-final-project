@@ -1,8 +1,8 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <title>Using MySQL and PHP with Google Maps</title>
+    <title>MySQL Map</title>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -16,7 +16,7 @@
         padding: 0;
       }
     </style>
-    </head>
+  </head>
     
     <body>
         <div id="map"></div>
@@ -62,8 +62,7 @@
               handleLocationError(false, infoWindow, map.getCenter());
             }
           }
-          var infoWindow = new google.maps.InfoWindow;
-        
+          
           // Change this depending on the name of your PHP or XML file
           downloadUrl('https://storage.googleapis.com/mapsdevsite/json/mapmarkers2.xml', function(data) {
             var xml = data.responseXML;
@@ -99,24 +98,24 @@
             });
           });
         
-      
-        function downloadUrl(url, callback) {
-            var request = window.ActiveXObject ?
-            new ActiveXObject('Microsoft.XMLHTTP') :
-            new XMLHttpRequest;
         
-        request.onreadystatechange = function() {
-          if (request.readyState == 4) {
-            request.onreadystatechange = doNothing;
-            callback(request, request.status);
+          function downloadUrl(url, callback) {
+              var request = window.ActiveXObject ?
+              new ActiveXObject('Microsoft.XMLHTTP') :
+              new XMLHttpRequest;
+          
+          request.onreadystatechange = function() {
+            if (request.readyState == 4) {
+              request.onreadystatechange = doNothing;
+              callback(request, request.status);
+            }
+          };
+              
+              request.open('GET', url, true);
+              request.send(null);
           }
-        };
-            
-            request.open('GET', url, true);
-            request.send(null);
-        }
-        
-        function doNothing() { }
+          
+          function doNothing() { }
         
       </script>
       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDX-Bg7XIQuMCYO1htyvZXMv3RsHo3uuK8&callback=initMap"></script>
