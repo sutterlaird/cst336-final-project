@@ -1,6 +1,7 @@
 <?php
     require("dbinfo.php");
-    
+    error_reporting(1);
+
     function parseToXML($htmlStr)
     {
         $xmlStr=str_replace('<','&lt;',$htmlStr);
@@ -13,14 +14,19 @@
     
     // Opens a connection to a MySQL server
     $connection = mysqli_connect($hostname, $username, $password);
+    
     if (!$connection) {
-      die('Not connected : ' . mysqli_error());
+      die('Not connected : ' . mysqli_error($connection));
     }
     
     // Set the active MySQL database
     $db_selected = mysqli_select_db($database, $connection);
+    echo "$database";
+    echo "$db_selected";
+    $error = mysqli_error($connection);
+    echo "$error";
     if (!$db_selected) {
-      die ('Can\'t use db : ' . mysqli_error());
+      die ('Can\'t use db : ' . mysqli_error($connection));
     }
     
     // Select all the rows in the markers table
