@@ -13,7 +13,7 @@
     }
     
     // Opens a connection to a MySQL server
-    $connection = mysqli_connect($hostname, $username, $password);
+    $connection = mysqli_connect($hostname, $username, $password, $database);
     
     if (!$connection) {
       die('Not connected : ' . mysqli_error($connection));
@@ -23,13 +23,13 @@
     //If you load this page it will print "Can't use db" because $db_selected is coming up false
 
     // Set the active MySQL database
-    $db_selected = mysqli_select_db($database, $connection);
-    if (!$db_selected) {
-      die ('Can\'t use db : ' . mysqli_error($connection));
-    }
+    // $db_selected = mysqli_select_db($database, $connection);
+    // if (!$db_selected) {
+    //   die ('Can\'t use db : ' . mysqli_error($connection));
+    // }
     
     // Select all the rows in the markers table
-    $query = "SELECT * FROM map WHERE 1";
+    $query = "SELECT * FROM `map` WHERE 1";
     $result = mysqli_query($query);
     if (!$result) {
       die('Invalid query: ' . mysqli_error());
