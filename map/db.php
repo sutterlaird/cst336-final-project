@@ -1,6 +1,5 @@
 <?php
     require("dbinfo.php");
-    error_reporting(1);
 
     function parseToXML($htmlStr)
     {
