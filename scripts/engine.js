@@ -71,7 +71,7 @@ function buildProfilePage() {
     clearPage();
     $("#contentArea").append($("#profile").html())
     
-     var userData = {
+    var userData = {
         requestType: "getProfile",
     };
     $.ajax({
