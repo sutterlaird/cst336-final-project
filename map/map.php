@@ -24,11 +24,17 @@
         <script>
             var infoWindow, map;
             var customLabel = {
-                restaurant: {
-                  label: 'R'
+                wi: {
+                  label: 'WI'
                 },
-                bar: {
-                  label: 'B'
+                as: {
+                  label: 'AS'
+                },
+                ma: {
+                  label: 'MA'
+                },
+                cy: {
+                  label: 'CY'
                 }
             };
         
@@ -71,6 +77,8 @@
               var id = markerElem.getAttribute('id');
               var name = markerElem.getAttribute('name');
               var address = markerElem.getAttribute('address');
+              var desc = markerElem.getAttribute('description');
+              console.log(desc);
               var type = markerElem.getAttribute('type');
               var point = new google.maps.LatLng(
                   parseFloat(markerElem.getAttribute('lat')),
@@ -78,13 +86,21 @@
         
               var infowincontent = document.createElement('div');
               var strong = document.createElement('strong');
-              strong.textContent = name
+              strong.textContent = name;
               infowincontent.appendChild(strong);
               infowincontent.appendChild(document.createElement('br'));
         
               var text = document.createElement('text');
-              text.textContent = address
+              var description = document.createElement('desc');
+              
+              var strong2 = document.createElement('strong');
+              strong2.textContent = desc;
+              text.textContent = address;
               infowincontent.appendChild(text);
+              infowincontent.appendChild(document.createElement('br'));
+              infowincontent.appendChild(document.createElement('br'));
+              infowincontent.appendChild(strong2);
+              
               var icon = customLabel[type] || {};
               var marker = new google.maps.Marker({
                 map: map,

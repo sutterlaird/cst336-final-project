@@ -48,6 +48,7 @@
       echo 'id="' . $row['id'] . '" ';
       echo 'name="' . parseToXML($row['name']) . '" ';
       echo 'address="' . parseToXML($row['address']) . '" ';
+      echo 'description="' . parseToXML($row['description']) . '" ';
       echo 'lat="' . $row['lat'] . '" ';
       echo 'lng="' . $row['lng'] . '" ';
       echo 'type="' . $row['type'] . '" ';
