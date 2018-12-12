@@ -216,7 +216,8 @@ switch($httpMethod) {
     {
       $userId = $postedJsonData['userId'];
       
-      foreach ($postedJsonData['items'] as $item)
+      // Loop for checked items
+      foreach ($postedJsonData['checkedItems'] as $item)
       {
         $whereSql = "SELECT item_id from `items` WHERE shortname=:shortname";
         // The prepare caches the SQL statement for N number of parameters imploded above
@@ -237,6 +238,40 @@ switch($httpMethod) {
         if (count($results2) == 0) {
           try {
             $insertSql = "INSERT INTO `user_has` (`user_id`, `item_id`) values(:user_id, :item_id)";
+            $insertStmt = $dbConn->prepare($insertSql);
+            $insertStmt->bindParam(":item_id", $itemId);
+            $insertStmt->bindParam(":user_id", $userId);
+            $insertStmt->execute();
+          }
+          catch (Exception $e) {
+            $e.get_called_class();
+          }
+        }
+      }
+      
+      
+      // Loop for unchecked items
+      foreach ($postedJsonData['uncheckedItems'] as $item)
+      {
+        $whereSql = "SELECT item_id from `items` WHERE shortname=:shortname";
+        // The prepare caches the SQL statement for N number of parameters imploded above
+        $whereStmt = $dbConn->prepare($whereSql);
+        $whereStmt->bindParam(":shortname", $item);
+        $whereStmt->execute();
+        $results = $whereStmt->fetchAll(PDO::FETCH_ASSOC);
+        $itemId = $results[0]["item_id"];
+        
+        $whereSql2 = "SELECT * from `user_has` WHERE user_id=:user_id AND item_id=:item_id";
+        // The prepare caches the SQL statement for N number of parameters imploded above
+        $whereStmt2 = $dbConn->prepare($whereSql2);
+        $whereStmt2->bindParam(":user_id", $userId);
+        $whereStmt2->bindParam(":item_id", $itemId);
+        $whereStmt2->execute();
+        $results2 = $whereStmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        if (count($results2) == 0) {
+          try {
+            $insertSql = "DELETE FROM `user_has` WHERE user_id=:user_id AND item_id=:item_id";
             $insertStmt = $dbConn->prepare($insertSql);
             $insertStmt->bindParam(":item_id", $itemId);
             $insertStmt->bindParam(":user_id", $userId);

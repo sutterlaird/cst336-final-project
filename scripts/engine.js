@@ -150,6 +150,7 @@ function buildKitPage() {
 
 // kitPageWork handles loading the kit page code into the content area and checking the appropriate checkboxes
 function kitPageWork() {
+    $("#kitUpdateMsg").addClass("d-none");
     var userData = {
         requestType: "getKit",
         userId: userId
@@ -183,14 +184,21 @@ function kitPageWork() {
 // setKit updates the DB when the update button is pressed on the kit page
 function setKit() {
     var checkedItems = new Array();
-    $("input:checkbox[name=items]:checked").each(function(){
-        checkedItems.push($(this).val());
+    var uncheckedItems = new Array();
+    $("#contentArea input:checkbox[name=items]").each(function(){
+        if ($(this).prop("checked")) {
+            checkedItems.push($(this).val());
+        }
+        else {
+            uncheckedItems.push($(this).val());
+        }
     });
     
     var userData = {
         requestType: "setKit",
         userId: userId,
-        items: checkedItems
+        checkedItems: checkedItems,
+        uncheckedItems: uncheckedItems
     }
     
     $.ajax({
