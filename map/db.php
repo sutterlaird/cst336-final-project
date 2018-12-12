@@ -13,7 +13,7 @@
     }
     
     // Opens a connection to a MySQL server
-    $connection = mysqli_connect($hostname, $username, $password);
+    $connection = mysqli_connect($hostname, $username, $password, $database);
     
     if (!$connection) {
       die('Not connected : ' . mysqli_error($connection));
@@ -23,6 +23,7 @@
     //If you load this page it will print "Can't use db" because $db_selected is coming up false
 
     // Set the active MySQL database
+
     $db_selected = mysqli_select_db($connection, $database);
     if (!$db_selected) {
       die ('Can\'t use db : ' . mysqli_error($connection));
