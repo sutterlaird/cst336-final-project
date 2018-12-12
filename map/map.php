@@ -24,17 +24,47 @@
         <script>
             var infoWindow, map;
             var customLabel = {
-                wi: {
+                WI: {
                   label: 'WI'
                 },
-                as: {
+                AS: {
                   label: 'AS'
                 },
-                ma: {
+                MA: {
                   label: 'MA'
                 },
-                cy: {
+                CY: {
                   label: 'CY'
+                },
+                SA: {
+                  label: 'SA'
+                },
+                TO: {
+                  label: 'TO'
+                },
+                AV: {
+                  label: 'AV'
+                },
+                YA: {
+                  label: 'YA'
+                },
+                VI: {
+                  label: 'VI'
+                },
+                PI: {
+                  label: 'PI'
+                },
+                ST: {
+                  label: 'ST'
+                },
+                PRW: {
+                  label: 'PRW'
+                },
+                PRC: {
+                  label: 'PRC'
+                },
+                PRE: {
+                  label: 'PRE'
                 }
             };
         
@@ -78,7 +108,6 @@
               var name = markerElem.getAttribute('name');
               var address = markerElem.getAttribute('address');
               var desc = markerElem.getAttribute('description');
-              console.log(desc);
               var type = markerElem.getAttribute('type');
               var point = new google.maps.LatLng(
                   parseFloat(markerElem.getAttribute('lat')),

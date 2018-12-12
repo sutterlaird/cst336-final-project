@@ -18,9 +18,6 @@
       die('Not connected : ' . mysqli_error($connection));
     }
     
-    //** This is where the problem lies ** 
-    //If you load this page it will print "Can't use db" because $db_selected is coming up false
-
     // Set the active MySQL database
 
     $db_selected = mysqli_select_db($connection, $database);
