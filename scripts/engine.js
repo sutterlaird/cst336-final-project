@@ -302,38 +302,45 @@ function showSignupModal() {
     $("#signupModal").modal("show");
     
     $("#signupButton").click(function() {
-        var userData = {
-            requestType: "signup",
-            username: $("#signUpUsername").val(),
-            password: $("#signUpPassword").val()
-        };
-        $.ajax({
-            url: "api.php",
-            type: "POST",
-            dataType: "json",
-            contentType: "application/json",
-            data: JSON.stringify(userData)
-        })
-        .done(function(data) {
-            if (data['statusCode'] == 0) {
-                alert("Account " + userData.username + " was created successfully!");
-                console.log("signup was successful");
-                loggedIn = true;
-                
-                $("#signupModal").modal("hide");
-                $("#signupBarButton").hide();
-                $("#loginBar").html("Logged in as " + userData.username + "  ");
-                $("#profileLink").removeClass("d-none");
-            }
-            else {
-                alert("Account creation failed!");
-                console.log("Signup failed");
-            }
-        })
-        .fail(function(xhr, status, errorThrown) {
-            console.log("error", xhr.responseText);
-        });
-                
+        $("#signupPasswordMismatch").addClass("d-none");
+        
+        if ($("#signUpPassword1").val() != $("#signUpPassword2").val()) {
+            $("#signupPasswordMismatch").removeClass("d-none");
+        }
+        else {
+            
+            var userData = {
+                requestType: "signup",
+                username: $("#signUpUsername").val(),
+                password: $("#signUpPassword1").val(),
+                email: $("#signUpEmail").val()
+            };
+            $.ajax({
+                url: "api.php",
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify(userData)
+            })
+            .done(function(data) {
+                if (data['statusCode'] == 0) {
+                    alert("Account " + userData.username + " was created successfully!");
+                    console.log("signup was successful");
+                    loggedIn = true;
+                    $("#signupModal").modal("hide");
+                    $("#signupBarButton").hide();
+                    $("#loginBar").html("Logged in as " + userData.username + "  " + $("#logoutButtonDiv").html());
+                    $("#profileLink").removeClass("d-none");
+                }
+                else {
+                    alert("Account creation failed!");
+                    console.log("Signup failed");
+                }
+            })
+            .fail(function(xhr, status, errorThrown) {
+                console.log("error", xhr.responseText);
+            });
+        }
     });
 }
 

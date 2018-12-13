@@ -111,12 +111,13 @@ switch($httpMethod) {
     // Check if request is for signup, then execute signup procedure
     else if ($postedJsonData['requestType'] == "signup")
     {
-      $whereSql = "INSERT INTO `users` (`username`, `password`) values(:username,SHA(:password))";
+      $whereSql = "INSERT INTO `users` (`username`, `password`, `email`) values(:username,SHA(:password),:email)";
       
       // The prepare caches the SQL statement for N number of parameters imploded above
       $whereStmt = $dbConn->prepare($whereSql);
       $whereStmt->bindParam(":username", $postedJsonData['username']);
       $whereStmt->bindParam(":password", $postedJsonData['password']);
+      $whereStmt->bindParam(":email", $postedJsonData['email']);
       $whereStmt->execute();
       
       
@@ -132,8 +133,17 @@ switch($httpMethod) {
         // login successful
         $results = ["statusCode" => "0",
                 "message" => "Account creation successful!"];
+        $msg = "Hi, ".$postedJsonData['username']."!\n\nThank you for signing up for CSUMB Emergency Preparedness!\n\nIn the darkness you could hear the crying of women, the wailing of infants, and the shouting of men. Some prayed for help. Others wished for death. But still more imagined that there were no Gods left, and that the universe was plunged into eternal darkness.\n\n--Pliny the Younger";
+        $msg = wordwrap($msg,70);
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        
+        // More headers
+        $headers .= 'From: <emergencypreparedness@csumb.edu>' . "\r\n";
+        mail($postedJsonData['email'], "Welcome to CSUMB Emergency Preparedness!", $msg, $headers);
         $_SESSION['loggedIn'] = true;
         $_SESSION['user_id'] = $records[0]["user_id"];
+        $_SESSION['username'] = $records[0]["username"];
       }
       else {
         $results = ["statusCode" => "1",
