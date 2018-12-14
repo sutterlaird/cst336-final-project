@@ -1,0 +1,47 @@
+body {
+    font-family: arial;
+}
+
+#loginBar {
+    width: 100%;
+    height: 45px;
+    background-color: #B0B0B0;
+    color: white;
+    border: 2px solid black;
+    text-align: right;
+    margin: 0px;
+}
+
+.loginLink {
+    background-color: black;
+    padding: 5px;
+}
+
+#headerBar {
+    height: 150px;
+    background-color: green;
+    padding: 25px;
+    color: white;
+}
+
+#contentArea {
+    padding: 25px;
+}
+
+#kitTitle {
+    text-align: center;
+    color: navy;
+}
+
+#items {
+}
+
+.title {
+    text-align: center;
+}
+
+/* Always set the map height explicitly to define the size of the div
+* element that contains the map. */
+#map {
+    height: 100%;
+}

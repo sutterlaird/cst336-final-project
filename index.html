@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CSUMB Emergency Preparedness</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl" crossorigin="anonymous"></script>
+        <script src="scripts/engine.js"></script>
+    </head>
+    <body onload="buildHomepage()">
+        <header>
+            <div id="loginBar">
+                <!--<button type="button" id="signupBarButton" class="btn btn-primary" onclick="showSignupModal()">Sign up</button>-->
+                <!--<button type="button" id="loginBarButton" class="btn btn-primary" onclick="showLoginModal()">Log In</button>-->
+            </div>
+            <div id="headerBar">
+                <h1>CSUMB Emergency Preparedness</h1>
+                <h2>Better Safe than Otter</h2>
+            </div>
+            <div id="menuBox">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                      <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="buildHomepage()">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="buildKitPage()">My Kit</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="buildMapPage()">Disaster Map</a>
+                      </li>
+                      <li class="nav-item d-none" id="profileLink">
+                        <a class="nav-link" href="#" onclick="buildProfilePage()">My Profile</a>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
+            </div>
+        </header>
+        
+        
+        <div id="contentArea">
+          
+        </div>
+        
+        <div id="home" class="d-none">
+
+            <div class="title text-center"><h1>Do You Have Your Go Bag?</h1></div>
+            <div class="row">
+                <div class="col-12 col-lg-2">
+                    <img style="max-width:100%;" src="img/gobag.jpg" alt="Picture of go bag" class="img-responsive float-left mr-3">
+                </div>
+                <div class="col-lg-10">
+                    <p>A go bag, otherwise referred to as a bug-out bag or a 72-hour bag, is important when disaster strikes. When something bad happens, 
+                time is essential and can be the difference between life and death. For example, take the recent wildfires, having a go bag already pre-packed with everything, 
+                all you would need to do is grab your bag and go. This would significantly reduce the amount of time you would need to spend in harms way, since instead of needing
+                to gather up all of your items it would all be ready. Another advantage would be that since the bag is already packed with all of the essentials, it becomes easier
+                to make sure you have everything you may need. This is the best option for emergency preperation since it allows you to always be ready to go whenever you may need to.</p>
+                </div>
+            </div>
+            
+            <div class="title text-center"><h1>Food Tips</h1></div>
+            <div class="row">
+                <div class="col-12 col-lg-2">
+                    <img style="max-width:100%;" src="img/clif-bars.jpg" alt="Picture of cliff bars" class="img-responsive float-left mr-3">
+                </div>
+                <div class="col-lg-10">
+                    <p>It is good to keep non-perishable food such as high calorie energy or protein bars. These are good choice since they are lightweight, 
+            easy to pack, and easy to eat while moving. Size and weight are important since there will be many items in the bag, so it is best to use limited space, 
+            while keeping weight to a minimum. It may also be good to keep gum in your bag since it can not only keep your breath fresh, but it can also help with 
+            aleviating hunger.</p>
+                </div>
+            </div><br>
+            
+            <div class="title text-center"><h1>Tips For Maintaining Your Bag</h1></div>
+            <div id="content3">It is best to have your go bag ready 24/7, since disaster can strike at any time. This means checking your bag every six months 
+            to at least change out food and water items. If needed, it is also good to check any medication, and also to make sure that children's clothing in 
+            the bag still fits them.</div><br>
+        </div>
+        
+        <div id="myKit" class="d-none">
+          <div id="kitUpdateMsg" class="alert alert-success d-none">
+            <strong>Success:</strong> Kit Updated Successfully
+          </div>
+          <form id="itemsForm">
+            <input type="checkbox" name="items" value="water" id="waterCheck"> Water<br>
+            <input type="checkbox" name="items" value="food" id="foodCheck"> Food<br>
+            <input type="checkbox" name="items" value="radio" id="radioCheck"> Portable Radio<br>
+            <input type="checkbox" name="items" value="flashlight" id="flashlightCheck"> Flashlight<br>
+            <input type="checkbox" name="items" value="firstaidkit" id="firstaidkitCheck"> First Aid Kit<br>
+            <input type="checkbox" name="items" value="batteries" id="batteriesCheck"> Extra Batteries<br>
+            <input type="checkbox" name="items" value="whistle" id="whistleCheck"> Whistle<br>
+            <input type="checkbox" name="items" value="mask" id="maskCheck"> Dust Mask<br>
+            <input type="checkbox" name="items" value="towel" id="towelCheck"> Moist Towelettes<br>
+            <input type="checkbox" name="items" value="bags" id="bagsCheck"> Garbage Bags and Plastic Ties<br>
+            <input type="checkbox" name="items" value="tools" id="toolsCheck"> Wrench or Pliers <br>
+            <input type="checkbox" name="items" value="maps" id="mapsCheck"> Local Maps<br>  
+            <input type="checkbox" name="items" value="charger" id="chargerCheck"> Cell Phone Charger<br>  
+            <input type="checkbox" name="items" value="phoneBattery" id="phoneBatteryCheck"> Backup Phone Battery<br>  
+            
+            <br><br>
+            <input id = "submit" class="btn" type="button" value="Update" onclick="setKit()">
+        </form>
+        </div>
+        
+        <div id="disasterMap" class="d-none">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="map/map.php" style="border: 1px solid #ccc"></iframe>
+          </div>
+        </div>
+        
+        <!-- Login Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Log In</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="loginForm">
+                  Username: <input type="text" id="logInUsername"><br/><br/>
+                  Password: <input type="password" id="logInPassword">
+                </form>
+                <br />
+                <div id="loginFailureMsg" class="alert alert-danger d-none">
+                  <strong>Error:</strong> Username or password was incorrect
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" id="loginButton" class="btn btn-primary">Log In</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--End Login Modal  -->
+                
+              
+        
+                
+        <!-- Start Signup Modal -->
+        <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create an Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div id="signupPasswordMismatch" class="alert alert-danger d-none">
+                  <strong>Error:</strong> Password Does Not Match
+                </div>
+                <form>
+                  Username: <input type="text" id="signUpUsername" name="username"></input></span><br /><br />
+                  Password: <input type="password" id="signUpPassword1" name="password1"></input> <br /><br />
+                  Retype Password: <input type="password" id="signUpPassword2" name="password2"></input> <br /><br />
+                  Email Address: <input type="text" id="signUpEmail" name="email"></input></span><br /><br />
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="signupButton" class="btn btn-primary">Signup</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--End Signup Modal-->
+        
+        
+        <!--Logout button-->
+        <div id="logoutButtonDiv" class="d-none">
+          <button type="button" id="logOutButton" class="btn btn-primary" onclick="logOut()">Log Out</button>
+        </div>
+        <!--End logout button-->
+        
+        
+        <!--Login/signup buttons-->
+        <div id="loginBarButtons" class="d-none">
+          <button type="button" id="signupBarButton" class="btn btn-primary" onclick="showSignupModal()">Sign up</button>
+          <button type="button" id="loginBarButton" class="btn btn-primary" onclick="showLoginModal()">Log In</button>
+        </div>
+        <!--End login/signup buttons-->
+        
+        
+        
+        
+        <div id="profile" class="d-none">
+          <form>
+            Username: <input type="text" id="profileUsername" readonly><br/>
+            First Name: <input type="text" id="profileFirstName"><br/>
+            Last Name: <input type="text" id="profileLastname"><br/>
+            Email Address: <input type="text" id="profileEmail"><br/>
+            Phone Number: <input type="text" id="profilePhone"><br/>
+            Address: <input type="text" id="profileAddress"><br/>
+            <button type="button" id="updateProfileButton" class="btn btn-primary" onclick="updateProfile()">Update Profile</button>
+          </form>
+        </div>
+        
+    </body>
+</html>
